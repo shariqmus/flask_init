@@ -1,0 +1,6 @@
+mkdir flask_init
+cd flask_init
+python -mvenv venv
+.\venv\Scripts\activate.bat
+pip install flask
+
