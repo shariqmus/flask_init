@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-import pymongo
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
@@ -16,10 +16,20 @@ def post():
     print("json {0}".format(request.get_json()))
     print("Data receive =================================================================")
 
-    if True:
-        return "Yay!", 200
+
+    data = request.get_json();
+
+    # connection = MongoClient('mongodb://user:password@localhost:27017/database')
+    connection = MongoClient('mongodb://localhost:27017/database')
+    connection.database_names()
+    db = connection.database
+    posts = db.posts
+    post_id = posts.insert(data)
+
+    if post_id:
+        return "Inserted " + str(post_id), 200
     else:
-        return "Nay!", 202
+        return "Error inserting data.", 202
 
 if __name__ == '__main__':
     host = os.getenv('IP', '127.0.0.1')
