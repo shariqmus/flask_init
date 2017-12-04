@@ -12,9 +12,9 @@ def index():
 
 @app.route('/post', methods=['POST'])
 def post():
-    print("Data receive =================================================================")
+    print("Data receive ================================================================")
     print("json {0}".format(request.get_json()))
-    print("Data receive =================================================================")
+    print("Data receive ================================================================")
 
 
     data = request.get_json();
